@@ -19,6 +19,12 @@
 #endif
 
 @class MWPhotoBrowser;
+@protocol MWPhotoCaptionViewDelegate <NSObject>
+
+- (void)maxHeightReached:(float)height;
+- (float)maxHeight;
+
+@end
 
 @protocol MWPhotoBrowserDelegate <NSObject>
 
@@ -35,10 +41,10 @@
 - (BOOL)photoBrowser:(MWPhotoBrowser *)photoBrowser isPhotoSelectedAtIndex:(NSUInteger)index;
 - (void)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index selectedChanged:(BOOL)selected;
 - (void)photoBrowserDidFinishModalPresentation:(MWPhotoBrowser *)photoBrowser;
-
+- (void)textChanged:(NSString *)message forFileAtIndex:(NSUInteger)index;
 @end
 
-@interface MWPhotoBrowser : UIViewController <UIScrollViewDelegate, UIActionSheetDelegate>
+@interface MWPhotoBrowser : UIViewController <UIScrollViewDelegate, UIActionSheetDelegate, HPGrowingTextViewDelegate>
 
 @property (nonatomic, weak) IBOutlet id<MWPhotoBrowserDelegate> delegate;
 @property (nonatomic) BOOL zoomPhotosToFill;
@@ -52,6 +58,8 @@
 @property (nonatomic) BOOL autoPlayOnAppear;
 @property (nonatomic) NSUInteger delayToHideElements;
 @property (nonatomic, readonly) NSUInteger currentIndex;
+@property (nonatomic) BOOL isCaptionEditable;
+@property (nonatomic, strong) NSMutableArray *photos;
 
 // Customise image selection icons as they are the only icons with a colour tint
 // Icon should be located in the app's main bundle

@@ -17,7 +17,7 @@
     
 	// Data
     NSUInteger _photoCount;
-    NSMutableArray *_photos;
+    NSMutableArray *_fileCaptions;
     NSMutableArray *_thumbPhotos;
 	NSArray *_fixedPhotosArray; // Provided via init
 	

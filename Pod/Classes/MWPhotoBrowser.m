@@ -74,6 +74,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     _enableGrid = YES;
     _startOnGrid = NO;
     _enableSwipeToDismiss = YES;
+    _isCaptionEditable = NO;
     _delayToHideElements = 5;
     _visiblePages = [[NSMutableSet alloc] init];
     _recycledPages = [[NSMutableSet alloc] init];
@@ -683,9 +684,17 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     } else {
         id <MWPhoto> photo = [self photoAtIndex:index];
         if ([photo respondsToSelector:@selector(caption)]) {
-            if ([photo caption]) captionView = [[MWCaptionView alloc] initWithPhoto:photo];
+            if ([photo caption]) captionView = [[MWCaptionView alloc] initWithPhoto:photo isEditable:_isCaptionEditable];
+            // Adding separator between the photo browser and the text view
+            if (_isCaptionEditable == YES) {
+                CALayer *upperBorder = [CALayer layer];
+                upperBorder.backgroundColor = [[UIColor lightGrayColor] CGColor];
+                upperBorder.frame = CGRectMake(0, 0, self.view.frame.size.width, 1.0f);
+                [captionView.layer addSublayer:upperBorder];
+            }
         }
     }
+    captionView.textView.delegate = self;
     captionView.alpha = [self areControlsHidden] ? 0 : 1; // Initial alpha
     return captionView;
 }
@@ -1666,4 +1675,22 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     self.navigationController.navigationBar.userInteractionEnabled = YES;
 }
 
+#pragma mark - Editable caption
+
+- (BOOL)growingTextView:(HPGrowingTextView *)growingTextView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    if ([text isEqual:@"\n"]) {
+        [growingTextView resignFirstResponder];
+        return NO;
+    }
+    return YES;
+}
+
+- (void)growingTextViewDidChangeSelection:(HPGrowingTextView *)growingTextView {
+    [self.delegate textChanged:growingTextView.text forFileAtIndex:self.currentIndex];
+    [self layoutVisiblePages];
+}
+
+- (void)growingTextView:(HPGrowingTextView *)growingTextView didChangeHeight:(float)height {
+    
+}
 @end

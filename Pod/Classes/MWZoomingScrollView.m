@@ -41,6 +41,9 @@
 		_tapView.tapDelegate = self;
 		_tapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 		_tapView.backgroundColor = [UIColor blackColor];
+        if (_photoBrowser.isCaptionEditable == YES) {
+            _tapView.userInteractionEnabled = NO;
+        }
 		[self addSubview:_tapView];
 		
 		// Image view
@@ -48,6 +51,9 @@
 		_photoImageView.tapDelegate = self;
 		_photoImageView.contentMode = UIViewContentModeCenter;
 		_photoImageView.backgroundColor = [UIColor blackColor];
+        if (_photoBrowser.isCaptionEditable == YES) {
+            _photoImageView.userInteractionEnabled = NO;
+        }
 		[self addSubview:_photoImageView];
 		
 		// Loading indicator
