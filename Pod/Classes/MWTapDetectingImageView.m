@@ -7,6 +7,7 @@
 //
 
 #import "MWTapDetectingImageView.h"
+#import <UIKit/UIKit.h>
 
 @implementation MWTapDetectingImageView
 
