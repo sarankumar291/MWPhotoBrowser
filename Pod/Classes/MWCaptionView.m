@@ -65,7 +65,7 @@ static const CGFloat textViewPadding = 5;
 - (void)setupCaption {
     if (_isEditable == YES) {
         _textView = [[HPGrowingTextView alloc] initWithFrame:CGRectIntegral(CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height))];
-        textView.minHeight = self.bounds.size.height;
+        _textView.minHeight = self.bounds.size.height;
         _textView.maxNumberOfLines = 3;
         _textView.internalTextView.scrollIndicatorInsets = UIEdgeInsetsMake(5, 2, 5, 0);
         _textView.placeholder = @"Message";
