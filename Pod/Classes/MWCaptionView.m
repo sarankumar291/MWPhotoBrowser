@@ -10,6 +10,7 @@
 #import "MWCaptionView.h"
 #import "MWPhoto.h"
 #import "HPGrowingTextView.h"
+#import <QuartzCore/QuartzCore.h>
 
 static const CGFloat labelPadding = 10;
 static const CGFloat textViewPadding = 5;
@@ -25,16 +26,16 @@ static const CGFloat textViewPadding = 5;
 @implementation MWCaptionView
 
 - (id)initWithPhoto:(id<MWPhoto>)photo  isEditable:(bool)isEditable {
-    self = [super initWithFrame:CGRectMake(0, 0, 320, 44)]; // Random initial frame
+    self = [super initWithFrame:CGRectMake(0, 10, 320, 44)]; // Random initial frame
     if (self) {
         self.userInteractionEnabled = NO;
         _photo = photo;
         _isEditable = isEditable;
         self.userInteractionEnabled = _isEditable;
-        self.barStyle = UIBarStyleBlackTranslucent;
-        self.tintColor = nil;
-        self.barTintColor = [UIColor whiteColor];
-        self.barStyle = UIBarStyleBlackTranslucent;
+        self.barStyle = UIBarStyleDefault;
+        self.translucent = NO;
+        self.tintColor = [UIColor whiteColor];
+        self.barTintColor = [UIColor colorWithRed:(59.0/255.0) green:(65.0/255.0) blue:(79.0/255.0) alpha:1.0];
         [self setBackgroundImage:nil forToolbarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
         [self setupCaption];
@@ -45,10 +46,7 @@ static const CGFloat textViewPadding = 5;
     static CGSize maxSize = {0, 0};
     int numLines = _textView.internalTextView.contentSize.height/_textView.font.lineHeight;
     if (numLines > _textView.maxNumberOfLines) {
-        if (CGSizeEqualToSize(maxSize, CGSizeZero) == true)
         return maxSize;
-    } else {
-        
     }
     CGFloat maxHeight = 9999;
     if (numLines > 0) maxHeight = _textView.font.leading*numLines;
@@ -56,7 +54,7 @@ static const CGFloat textViewPadding = 5;
                                                    options:NSStringDrawingUsesLineFragmentOrigin
                                                 attributes:@{NSFontAttributeName:_textView.font}
                                                    context:nil].size;
-    CGSize size1 = CGSizeMake(size.width, textSize.height + 10);
+    CGSize size1 = CGSizeMake(size.width, textSize.height + 27);
     if (numLines == _textView.maxNumberOfLines) {
         maxSize = size1;
     }
@@ -66,15 +64,20 @@ static const CGFloat textViewPadding = 5;
 
 - (void)setupCaption {
     if (_isEditable == YES) {
-        _textView = [[HPGrowingTextView alloc] initWithFrame:CGRectIntegral(CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height))];
-        _textView.minHeight = self.bounds.size.height;
+        _textView = [[HPGrowingTextView alloc] initWithFrame:CGRectIntegral(CGRectMake(0, 10, self.bounds.size.width, self.bounds.size.height - 13))];
+        _textView.minHeight = self.bounds.size.height - 13;
         _textView.maxNumberOfLines = 3;
+        _textView.layer.cornerRadius = 5;
+        _textView.clipsToBounds = YES;
+        _textView.internalTextView.backgroundColor = [UIColor colorWithRed:(59.0/255.0) green:(65.0/255.0) blue:(79.0/255.0) alpha:1.0];
         _textView.internalTextView.scrollIndicatorInsets = UIEdgeInsetsMake(5, 2, 5, 0);
+        _textView.internalTextView.font = [UIFont fontWithName:@"Helvetica" size:17];
         _textView.placeholder = @"Message";
         _textView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
         _textView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleTopMargin;
-        _textView.textColor = [UIColor grayColor];
+        _textView.textColor = [UIColor whiteColor];
         _textView.font = [UIFont systemFontOfSize:17];
+        _textView.backgroundColor = [UIColor colorWithRed:(80.0/255.0) green:(84.0/255.0) blue:(96.0/255.0) alpha:1.0];
         _textView.userInteractionEnabled = YES;
         _textView.returnKeyType = UIReturnKeyDone;
         if ([_photo respondsToSelector:@selector(caption)]) {

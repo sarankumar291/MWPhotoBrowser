@@ -13,7 +13,8 @@
 #import "HexColors.h"
 #import "UIImage+MWPhotoBrowser.h"
 
-#define PADDING                  10
+#define PADDING                  15
+#define PAGE_PADDING              10
 
 static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 
@@ -81,6 +82,8 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     _thumbPhotos = [[NSMutableArray alloc] init];
     _currentGridContentOffset = CGPointMake(0, CGFLOAT_MAX);
     _didSavePreviousStateOfNavBar = NO;
+    _navigationBarStyle = UIBarStyleDefault;
+    _navigationBarTintColor = nil;
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     // Listen for MWPhoto notifications
@@ -144,7 +147,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     if (!_enableGrid) _startOnGrid = NO;
 	
 	// View
-	self.view.backgroundColor = [UIColor blackColor];
+	self.view.backgroundColor = [UIColor colorWithRed:(59.0/255.0) green:(65.0/255.0) blue:(79.0/255.0) alpha:1.0];
     self.view.clipsToBounds = YES;
 	
 	// Setup paging scrolling view
@@ -155,7 +158,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 	_pagingScrollView.delegate = self;
 	_pagingScrollView.showsHorizontalScrollIndicator = NO;
 	_pagingScrollView.showsVerticalScrollIndicator = NO;
-	_pagingScrollView.backgroundColor = [UIColor blackColor];
+	_pagingScrollView.backgroundColor = [UIColor colorWithRed:(59.0/255.0) green:(65.0/255.0) blue:(79.0/255.0) alpha:1.0];
     _pagingScrollView.contentSize = [self contentSizeForPagingScrollView];
 	[self.view addSubview:_pagingScrollView];
 	
@@ -447,13 +450,13 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 #pragma mark - Nav Bar Appearance
 
 - (void)setNavBarAppearance:(BOOL)animated {
-    //[self.navigationController setNavigationBarHidden:NO animated:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
     UINavigationBar *navBar = self.navigationController.navigationBar;
-    /*navBar.tintColor = [UIColor colorWithHexString:@"#593a79"];
-    navBar.barTintColor = nil;*/
+    navBar.tintColor = [UIColor whiteColor];
+    navBar.barTintColor =  _navigationBarTintColor;
     navBar.shadowImage = nil;
     navBar.translucent = YES;
-    navBar.barStyle = UIBarStyleDefault;
+    navBar.barStyle = _navigationBarStyle;
     [navBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
     [navBar setBackgroundImage:nil forBarMetrics:UIBarMetricsLandscapePhone];
 }
@@ -691,13 +694,6 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
         id <MWPhoto> photo = [self photoAtIndex:index];
         if ([photo respondsToSelector:@selector(caption)]) {
             if ([photo caption]) captionView = [[MWCaptionView alloc] initWithPhoto:photo isEditable:_isCaptionEditable];
-            // Adding separator between the photo browser and the text view
-            if (_isCaptionEditable == YES) {
-                CALayer *upperBorder = [CALayer layer];
-                upperBorder.backgroundColor = [[UIColor lightGrayColor] CGColor];
-                upperBorder.frame = CGRectMake(0, 0, self.view.frame.size.width, 1.0f);
-                [captionView.layer addSublayer:upperBorder];
-            }
         }
     }
     captionView.textView.delegate = self;
@@ -988,8 +984,8 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 
 - (CGRect)frameForPagingScrollView {
     CGRect frame = self.view.bounds;// [[UIScreen mainScreen] bounds];
-    frame.origin.x -= PADDING;
-    frame.size.width += (2 * PADDING);
+    frame.origin.y += (self.navigationController.navigationBar.frame.size.height + self.navigationController.navigationBar.frame.origin.y + PADDING);
+    frame.size.height -= (self.navigationController.navigationBar.frame.size.height + self.navigationController.navigationBar.frame.origin.y + PADDING);
     return CGRectIntegral(frame);
 }
 
@@ -1000,8 +996,8 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     // because it has a rotation transform applied.
     CGRect bounds = _pagingScrollView.bounds;
     CGRect pageFrame = bounds;
-    pageFrame.size.width -= (2 * PADDING);
-    pageFrame.origin.x = (bounds.size.width * index) + PADDING;
+    pageFrame.size.width -= (2 * PAGE_PADDING);
+    pageFrame.origin.x = (bounds.size.width * index) + PAGE_PADDING;
     return CGRectIntegral(pageFrame);
 }
 
@@ -1021,7 +1017,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     CGFloat height = 44;
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone &&
         UIInterfaceOrientationIsLandscape(orientation)) height = 32;
-	return CGRectIntegral(CGRectMake(0, self.view.bounds.size.height - height, self.view.bounds.size.width, height));
+	return CGRectIntegral(CGRectMake(0, self.view.bounds.size.height - height - (2 * PADDING), self.view.bounds.size.width, height));
 }
 
 - (CGRect)frameForCaptionView:(MWCaptionView *)captionView atIndex:(NSUInteger)index {

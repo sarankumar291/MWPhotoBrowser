@@ -38,21 +38,23 @@
         
 		// Tap view for background
 		_tapView = [[MWTapDetectingView alloc] initWithFrame:self.bounds];
-		_tapView.tapDelegate = self;
 		_tapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-		_tapView.backgroundColor = [UIColor whiteColor];
+        _tapView.backgroundColor = [UIColor colorWithRed:(59.0/255.0) green:(65.0/255.0) blue:(79.0/255.0) alpha:1.0];
         if (_photoBrowser.isCaptionEditable == YES) {
             _tapView.userInteractionEnabled = NO;
+        } else {
+            _tapView.tapDelegate = self;
         }
 		[self addSubview:_tapView];
 		
 		// Image view
 		_photoImageView = [[MWTapDetectingImageView alloc] initWithFrame:CGRectZero];
-		_photoImageView.tapDelegate = self;
-		_photoImageView.contentMode = UIViewContentModeCenter;
-		_photoImageView.backgroundColor = [UIColor whiteColor];
+        _photoImageView.contentMode = UIViewContentModeScaleAspectFit;
+        _tapView.backgroundColor = [UIColor colorWithRed:(59.0/255.0) green:(65.0/255.0) blue:(79.0/255.0) alpha:1.0];
         if (_photoBrowser.isCaptionEditable == YES) {
             _photoImageView.userInteractionEnabled = NO;
+        } else {
+            _photoImageView.tapDelegate = self;
         }
 		[self addSubview:_photoImageView];
 		
@@ -72,8 +74,9 @@
                                                    object:nil];
         
 		// Setup
-		self.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = [UIColor colorWithRed:(59.0/255.0) green:(65.0/255.0) blue:(79.0/255.0) alpha:1.0];
 		self.delegate = self;
+        self.scrollEnabled = false;
 		self.showsHorizontalScrollIndicator = NO;
 		self.showsVerticalScrollIndicator = NO;
 		self.decelerationRate = UIScrollViewDecelerationRateFast;

@@ -62,6 +62,9 @@
 @property (nonatomic, readonly) NSUInteger currentIndex;
 @property (nonatomic, strong) NSMutableArray *photos;
 
+// Customize Appearance
+@property (nonatomic, assign) UIBarStyle navigationBarStyle;
+@property (nonatomic, strong) UIColor *navigationBarTintColor;
 
 // Customise image selection icons as they are the only icons with a colour tint
 // Icon should be located in the app's main bundle
