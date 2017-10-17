@@ -181,7 +181,6 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     }
     if (self.displayActionButton) {
         _actionButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(actionButtonPressed:)];
-         addToAlbum = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addButtonPressed:)];
     }
     // Update
     [self reloadData];
@@ -223,13 +222,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     } else {
         // We're not first so show back button
         
-        if (self.navigationController.viewControllers.count == 1) {
-            navigationCountValue = 1;
-        }
-        else {
-            navigationCountValue = 2;
-        }
-        UIViewController *previousViewController = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-navigationCountValue];
+        UIViewController *previousViewController = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count - ((self.navigationController.viewControllers.count == 1) ? 1 : 2)];
         NSString *backButtonTitle = previousViewController.navigationItem.backBarButtonItem ? previousViewController.navigationItem.backBarButtonItem.title : previousViewController.title;
         UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle:backButtonTitle style:UIBarButtonItemStylePlain target:nil action:nil];
         // Appearance
