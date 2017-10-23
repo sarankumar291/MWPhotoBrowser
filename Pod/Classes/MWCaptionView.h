@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MWPhotoProtocol.h"
-#import "HPGrowingTextView.h"
+#import <HPGrowingTextView/HPGrowingTextView.h>
 
 @interface MWCaptionView : UIToolbar
 
