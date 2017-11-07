@@ -59,13 +59,17 @@ static const CGFloat textViewPadding = 5;
         textViewHeightConstraint.constant = ceil(textSize.height) + 13;
     }
     CGFloat height = [_autocompletionTableView numberOfRowsInSection:0] * 40;
-    autoCompleteTableViewHC.constant = (height <= 100) ? height : 100;
+    if (height == 0) {
+        autoCompleteTableViewHC.constant = 10;
+    } else {
+        autoCompleteTableViewHC.constant = (height <= 100) ? height : 100;
+    }
     CGSize size1 = CGSizeMake(size.width, textViewHeightConstraint.constant + autoCompleteTableViewHC.constant);
     if (numLines == _textView.maxNumberOfLines) {
         maxSize = size1;
     }
     return size1;
-
+    
 }
 
 - (void)setupCaption {
@@ -94,7 +98,7 @@ static const CGFloat textViewPadding = 5;
         [self addSubview:_textView];
         [_textView sizeToFit]; //added
         [_textView layoutIfNeeded];
-
+        
         // Auto completion view
         _autocompletionTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 10, self.bounds.size.width, 0)];
         _autocompletionTableView.backgroundColor = [UIColor colorWithRed:(59.0/255.0) green:(65.0/255.0) blue:(79.0/255.0) alpha:1.0];
@@ -102,7 +106,7 @@ static const CGFloat textViewPadding = 5;
         [self addSubview:_autocompletionTableView];
         
         // Constraints
-        NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:_autocompletionTableView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1 constant:0];
+        NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:_autocompletionTableView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1 constant:10];
         [self addConstraint:topConstraint];
         NSLayoutConstraint *bottomConstraint = [NSLayoutConstraint constraintWithItem:_autocompletionTableView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:_textView attribute:NSLayoutAttributeTop multiplier:1 constant:0];
         [self addConstraint:bottomConstraint];
@@ -123,7 +127,7 @@ static const CGFloat textViewPadding = 5;
         NSLayoutConstraint *trailingConstraint1 = [NSLayoutConstraint constraintWithItem:_textView attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTrailing multiplier:1 constant:0];
         [self addConstraint:trailingConstraint1];
         [self layoutIfNeeded];
-
+        
     } else {
         _label = [[UILabel alloc] initWithFrame:CGRectIntegral(CGRectMake(labelPadding, 0,
                                                                           self.bounds.size.width-labelPadding*2,
