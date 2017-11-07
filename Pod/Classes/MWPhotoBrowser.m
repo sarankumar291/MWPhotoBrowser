@@ -541,7 +541,9 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     [self positionVideoLoadingIndicator];
 	
 	// Adjust contentOffset to preserve page location based on values collected prior to location
-	_pagingScrollView.contentOffset = [self contentOffsetForPageAtIndex:indexPriorToLayout];
+    if (!_pagingScrollView.dragging && !_pagingScrollView.decelerating) {
+        _pagingScrollView.contentOffset = [self contentOffsetForPageAtIndex:indexPriorToLayout];
+    }
 	[self didStartViewingPageAtIndex:_currentPageIndex]; // initial
     
 	// Reset
@@ -1016,12 +1018,10 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 - (CGRect)frameForCaptionView:(MWCaptionView *)captionView atIndex:(NSUInteger)index {
     CGRect pageFrame = [self frameForPageAtIndex:index];
     CGSize captionSize = [captionView sizeThatFits:CGSizeMake(pageFrame.size.width, 0)];
-    NSLog(@"%@", NSStringFromCGSize(captionSize));
     CGRect captionFrame = CGRectMake(pageFrame.origin.x,
                                      pageFrame.size.height - captionSize.height - (_toolbar.superview?_toolbar.frame.size.height:0),
                                      pageFrame.size.width,
                                      captionSize.height);
-    NSLog(@"%@", NSStringFromCGRect(captionFrame));
     return CGRectIntegral(captionFrame);
 }
 
@@ -1694,8 +1694,13 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 //}
 
 - (void)growingTextViewDidChangeSelection:(HPGrowingTextView *)growingTextView {
-    [self.delegate textChanged:growingTextView.text forFileAtIndex:self.currentIndex];
-    [self layoutVisiblePages];
+    for (MWZoomingScrollView *page in _visiblePages) {
+        if (self.currentIndex == page.index) {
+            if (page.captionView) {
+                [self.delegate textChanged:growingTextView.text forFileAtIndex:self.currentIndex captionView: page.captionView];
+            }
+        }
+    }
 }
 - (void)growingTextView:(HPGrowingTextView *)growingTextView didChangeHeight:(float)height {
     

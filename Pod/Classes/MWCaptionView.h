@@ -13,6 +13,7 @@
 @interface MWCaptionView : UIToolbar
 
 @property (nonatomic, strong) HPGrowingTextView *textView;
+@property (nonatomic, strong) UITableView *autocompletionTableView;
 // Init
 - (id)initWithPhoto:(id<MWPhoto>)photo isEditable:(bool)isEditable;
 

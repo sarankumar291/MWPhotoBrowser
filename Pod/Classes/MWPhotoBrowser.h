@@ -41,7 +41,7 @@
 - (BOOL)photoBrowser:(MWPhotoBrowser *)photoBrowser isPhotoSelectedAtIndex:(NSUInteger)index;
 - (void)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index selectedChanged:(BOOL)selected;
 - (void)photoBrowserDidFinishModalPresentation:(MWPhotoBrowser *)photoBrowser;
-- (void)textChanged:(NSString *)message forFileAtIndex:(NSUInteger)index;
+- (void)textChanged:(NSString *)message forFileAtIndex:(NSUInteger)index captionView:(MWCaptionView *)captionView;
 @end
 
 @interface MWPhotoBrowser : UIViewController <UIScrollViewDelegate, UIActionSheetDelegate, HPGrowingTextViewDelegate>
