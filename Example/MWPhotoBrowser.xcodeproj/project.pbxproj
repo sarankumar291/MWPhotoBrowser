@@ -27,7 +27,7 @@
 		0EC5D4C91B4C480E0092ACC1 /* video_thumb.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0EC5D4C81B4C480E0092ACC1 /* video_thumb.jpg */; };
 		4C18E11B1B47E72800E3D63A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C18E1181B47E72800E3D63A /* AppDelegate.m */; };
 		4C18E11C1B47E72800E3D63A /* Menu.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C18E11A1B47E72800E3D63A /* Menu.m */; };
-		5D85B1FF20C9A5787008BA9A /* libPods-MWPhotoBrowser_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17201BDF03587F5E80EDCD1D /* libPods-MWPhotoBrowser_Example.a */; };
+		516166A2B021EE217E572462 /* Pods_MWPhotoBrowser_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CDB81FB9EF994594543F511 /* Pods_MWPhotoBrowser_Tests.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -40,7 +40,7 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
-		B966F42B18CE95C3B786EABF /* libPods-MWPhotoBrowser_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE292A9208F23121F3FB75D9 /* libPods-MWPhotoBrowser_Tests.a */; };
+		D451184CBF71056482E80406 /* Pods_MWPhotoBrowser_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45B7DE5F18B938EB66635E47 /* Pods_MWPhotoBrowser_Example.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,9 +72,10 @@
 		0EC5D4B31B4C46E50092ACC1 /* photo8t.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = photo8t.jpg; path = "MWPhotoBrowser/Local Media/photo8t.jpg"; sourceTree = SOURCE_ROOT; };
 		0EC5D4B41B4C46E50092ACC1 /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = video.mp4; path = "MWPhotoBrowser/Local Media/video.mp4"; sourceTree = SOURCE_ROOT; };
 		0EC5D4C81B4C480E0092ACC1 /* video_thumb.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = video_thumb.jpg; path = "MWPhotoBrowser/Local Media/video_thumb.jpg"; sourceTree = SOURCE_ROOT; };
-		17201BDF03587F5E80EDCD1D /* libPods-MWPhotoBrowser_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MWPhotoBrowser_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CAA6B8D37CDB52CE1257CBE /* Pods-MWPhotoBrowser_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MWPhotoBrowser_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MWPhotoBrowser_Tests/Pods-MWPhotoBrowser_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		2CDB81FB9EF994594543F511 /* Pods_MWPhotoBrowser_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MWPhotoBrowser_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42FCB8D314CA85E2DF2C6434 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		45B7DE5F18B938EB66635E47 /* Pods_MWPhotoBrowser_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MWPhotoBrowser_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C18E1171B47E72800E3D63A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4C18E1181B47E72800E3D63A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		4C18E1191B47E72800E3D63A /* Menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Menu.h; sourceTree = "<group>"; };
@@ -100,7 +101,6 @@
 		91B19115BFDF7E5E88649F0F /* Pods-MWPhotoBrowser_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MWPhotoBrowser_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MWPhotoBrowser_Tests/Pods-MWPhotoBrowser_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		B5C85CB7FE89F584D392C9CF /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		CACFEA75EB52F772068A49CC /* Pods-MWPhotoBrowser_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MWPhotoBrowser_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-MWPhotoBrowser_Example/Pods-MWPhotoBrowser_Example.release.xcconfig"; sourceTree = "<group>"; };
-		CE292A9208F23121F3FB75D9 /* libPods-MWPhotoBrowser_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MWPhotoBrowser_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,7 +111,7 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				5D85B1FF20C9A5787008BA9A /* libPods-MWPhotoBrowser_Example.a in Frameworks */,
+				D451184CBF71056482E80406 /* Pods_MWPhotoBrowser_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,7 +122,7 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				B966F42B18CE95C3B786EABF /* libPods-MWPhotoBrowser_Tests.a in Frameworks */,
+				516166A2B021EE217E572462 /* Pods_MWPhotoBrowser_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,8 +185,8 @@
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				17201BDF03587F5E80EDCD1D /* libPods-MWPhotoBrowser_Example.a */,
-				CE292A9208F23121F3FB75D9 /* libPods-MWPhotoBrowser_Tests.a */,
+				45B7DE5F18B938EB66635E47 /* Pods_MWPhotoBrowser_Example.framework */,
+				2CDB81FB9EF994594543F511 /* Pods_MWPhotoBrowser_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
