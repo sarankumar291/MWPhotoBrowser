@@ -12,9 +12,9 @@ PODS:
     - HPGrowingTextView
     - MBProgressHUD (~> 0.9)
     - SDWebImage (!= 3.7.2, ~> 3.7)
-  - SDWebImage (3.7.5):
-    - SDWebImage/Core (= 3.7.5)
-  - SDWebImage/Core (3.7.5)
+  - SDWebImage (3.8.2):
+    - SDWebImage/Core (= 3.8.2)
+  - SDWebImage/Core (3.8.2)
   - Specta (1.0.2)
 
 DEPENDENCIES:
@@ -36,7 +36,7 @@ SPEC CHECKSUMS:
   HPGrowingTextView: 88a716d97fb853bcb08a4a08e4727da17efc9b19
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MWPhotoBrowser: 86327dcf5db286ede7afcffee5df76ee3c20e387
-  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
+  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   Specta: 9cec98310dca411f7c7ffd6943552b501622abfe
 
 PODFILE CHECKSUM: f0528201d484bd48f65798bc253cd3bf45d69fcd
